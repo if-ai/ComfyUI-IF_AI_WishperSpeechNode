@@ -9,7 +9,6 @@ import textwrap
 import json
 from whisperspeech.pipeline import Pipeline
 import torchaudio
-import nltk
 from nltk.tokenize import sent_tokenize
 import re
 import scipy.io.wavfile as wav
