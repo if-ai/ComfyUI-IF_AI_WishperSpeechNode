@@ -1,42 +1,62 @@
 # ComfyUI-IF_AI_WishperSpeechNode
-A convenient fast Text to Speech Whisper Speech by Collabora you can train a voice on the fly on ComfyUI
+# A Convenient and Fast Text-to-Speech Application with Whisper Speech
 
-Enable torch_Compile for faster inference and training but I dont know the right Pytorch 
-so I dissable it by default 
+This repository hosts a Text-to-Speech (TTS) application that leverages Whisper Speech for voice synthesis, allowing users to train a voice model on-the-fly. It is built on ComfyUI and supports rapid training and inference processes.
 
-You can place a 10min OOG recording on the Audio folder to train your voice on the fly
+## Features
+- **On-the-fly Voice Training:** Train a custom voice model using a short audio recording.
+- **Fast Inference:** Optional support for `torch_Compile` to enhance performance during inference and training.
 
-pip install -r requirements.txt 
+## Installation
+- Git clone the repository to your custom_nodes folder 
+- pip install -r requirements.txt
 
-or double click the bat if you are on win portable
 
-DEDICATED ENV
+### IF dlib troubles try this workarounds
 
-Activate the env
-
-on conda env
-conda install -c conda-forge dlib
-
-on micromamba env
-micromamba install -c conda-forge dlib
-
-open terminal as admin
-
-pip uninstall cmake
-pip uninstall dlib
-WINDOWS
-
-H:\ComfyUI_windows_portable\python_embeded\python.exe -m pip install cmake
-H:\ComfyUI_windows_portable\python_embeded\python.exe -m pip install dlib
-or activate env
-
-python -m -m pip install cmake
-python -m pip install dlib
+#### DEDICATED ENV
+activate env
+  ```bash
+  python -m -m pip install cmake
+  python -m pip install cmake
+  python -m pip install dlib
+  
+  ```
+CLONING dlib repo
+  ```
+    git clone https://github.com/davisking/dlib.git
+    cd dlib
+  ```
+  activate env
+  ```
+      python.exe setup.py install
+  ```
 if not try with the terminal as admin
 
-pip uninstall cmake
-pip uninstall dlib
-pip install cmake
-git clone https://github.com/davisking/dlib.git
-cd dlib
-H:\ComfyUI_windows_portable\python_embeded\python.exe setup.py install
+1-.Activate the env
+on conda env
+`conda install -c conda-forge dlib`
+on micromamba env
+`micromamba install -c conda-forge dlib`
+
+#### Portable ENV
+  open terminal as admin
+    ```
+   H:\ComfyUI_windows_portable\python_embeded\python.exe -m pip install cmake
+   H:\ComfyUI_windows_portable\python_embeded\python.exe -m pip install dlib
+    ```
+CLONING dlib repo
+    ```
+    git clone https://github.com/davisking/dlib.git
+    cd dlib
+    H:\ComfyUI_windows_portable\python_embeded\python.exe setup.py install
+    ```
+
+
+
+
+
+
+   
+
+
