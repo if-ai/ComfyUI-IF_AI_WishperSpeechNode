@@ -17,7 +17,6 @@ This repository hosts a Text-to-Speech (TTS) application that leverages Whisper 
 #### DEDICATED ENV
 activate env
   ```bash
-  python -m -m pip install cmake
   python -m pip install cmake
   python -m pip install dlib
   
@@ -40,12 +39,14 @@ on micromamba env
 `micromamba install -c conda-forge dlib`
 
 #### Portable ENV
+  VIA pip
   open terminal as admin
     ```
    H:\ComfyUI_windows_portable\python_embeded\python.exe -m pip install cmake
    H:\ComfyUI_windows_portable\python_embeded\python.exe -m pip install dlib
     ```
-CLONING dlib repo
+    
+  CLONING dlib repo
     ```
     git clone https://github.com/davisking/dlib.git
     cd dlib
