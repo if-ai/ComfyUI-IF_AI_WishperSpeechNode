@@ -3,4 +3,4 @@ scipy
 nltk
 WhisperSpeech
 librosa
-
+huggingface_hub
