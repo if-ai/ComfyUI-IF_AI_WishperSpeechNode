@@ -18,8 +18,8 @@ This repository hosts a Text-to-Speech (TTS) application that leverages Whisper 
 1-.VIA PIP
 activate env
   ```bash
-  python -m pip install cmake
-  python -m pip install dlib
+  pip install cmake
+  pip install dlib
   
   ```
 2-. VIA CLONING DLIB REPO
