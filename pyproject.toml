@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-if_ai_wishperspeechnode"
-description = ""
+description = "This repository hosts a Text-to-Speech (TTS) application that leverages Whisper Speech for voice synthesis, allowing users to train a voice model on-the-fly. It is built on ComfyUI and supports rapid training and inference processes."
 version = "1.0.0"
 license = "LICENSE"
 dependencies = ["requests", "scipy", "nltk", "WhisperSpeech", "librosa", "huggingface_hub"]
