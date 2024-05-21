@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-if_ai_wishperspeechnode"
+description = ""
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["requests", "scipy", "nltk", "WhisperSpeech", "librosa", "huggingface_hub"]
+
+[project.urls]
+Repository = "https://github.com/if-ai/ComfyUI-IF_AI_WishperSpeechNode"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-IF_AI_WishperSpeechNode"
+Icon = ""
