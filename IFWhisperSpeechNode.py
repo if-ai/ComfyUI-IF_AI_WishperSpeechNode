@@ -14,7 +14,7 @@ import re
 import scipy.io.wavfile as wav
 
 import nltk
-nltk.download('punkt')
+nltk.download('punkt_tab')
 
 #os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:0'
 
@@ -35,8 +35,8 @@ class IFWhisperSpeech:
             },
         }
 
-    RETURN_TYPES = ("AUDIO", "STRING")
-    RETURN_NAMES = ("audios", "wav_16k_path")
+    RETURN_TYPES = ("AUDIO", "STRING", "AUDIO")
+    RETURN_NAMES = ("audios", "wav_16k_path", "output_audio")
     FUNCTION = "generate_audio"
     CATEGORY = "ImpactFrames💥🎞️"
     OUTPUT_NODE = True
@@ -58,7 +58,7 @@ class IFWhisperSpeech:
         self.overlap = 100.0
         self.comfy_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         self.audio_dir = os.path.join(os.path.dirname(__file__), "whisperspeech", "audio")
-        self.audio_files = [f for f in os.listdir(self.audio_dir) if f.endswith(".ogg")]
+        self.audio_files = [f for f in os.listdir(self.audio_dir) if (f.endswith(".ogg") or f.endswith(".wav"))]
         self.audio_files.insert(0, "None")
         self.sample_text = textwrap.dedent("""\
             Electromagnetism is a fundamental force of nature that encompasses the interaction between
@@ -115,12 +115,12 @@ class IFWhisperSpeech:
             stoks = stoks[stoks != 512]
             if old_stoks is not None:
                 assert(len(stoks) < 750-overlap)
-                stoks = torch.cat([old_stoks[-overlap:], stoks])
-                atoks_prompt = old_atoks[:,:,-overlap*3:]
+                stoks = torch.cat([old_stoks[-int(overlap):], stoks])
+                atoks_prompt = old_atoks[:,:,-int(overlap)*3:]
             else:
                 atoks_prompt = None
             atoks = pipe.s2a.generate(stoks, atoks_prompt=atoks_prompt, speakers=speaker.unsqueeze(0), show_progress_bar=False)
-            if atoks_prompt is not None: atoks = atoks[:,:,overlap*3+1:]
+            if atoks_prompt is not None: atoks = atoks[:,:,int(overlap)*3+1:]
             r.append(atoks)
             old_stoks = stoks
             old_atoks = atoks
@@ -140,8 +140,10 @@ class IFWhisperSpeech:
 
         # Save the resampled audio using scipy.io.wavfile
         wav.write(wav_16k_path, rate=16000, data=resampled_audio)
-
-        return audios, wav_16k_path
+ 
+        waveform, sample_rate = torchaudio.load(wav_16k_path)
+        output_audio = {"waveform": waveform.unsqueeze(0), "sample_rate": sample_rate}
+        return audios, wav_16k_path, output_audio
     
 NODE_CLASS_MAPPINGS = {"IF_WhisperSpeech": IFWhisperSpeech}
 NODE_DISPLAY_NAME_MAPPINGS = {"IF_WhisperSpeech": "IF Whisper Speech🌬️"}
