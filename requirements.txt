@@ -4,3 +4,4 @@ nltk
 WhisperSpeech
 librosa
 huggingface_hub
+webdataset
